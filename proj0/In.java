@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.net.HttpURLConnection;
+// import java.net.HttpURLConnection;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -143,7 +143,7 @@ public final class In {
             URL url = getClass().getResource(s);
 
             // or URL from web
-            if (url == null) { url = new URL(s); }
+            // if (url == null) { url = new URL(s); }
 
             URLConnection site = url.openConnection();
 
