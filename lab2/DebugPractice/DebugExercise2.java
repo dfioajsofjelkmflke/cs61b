@@ -48,19 +48,25 @@ public class DebugExercise2 {
         }
         int[] returnArray = new int[a.length];
         for (int i = 0; i < a.length; i += 1) {
-            int biggerValue = max(a[i], b[i]);
+            int biggerValue = my_max(a[i], b[i]);
             returnArray[i] = biggerValue;
         }
 
         return returnArray;
     }
-
+//    my solution of returning a max element of two arrays
+    public static int my_max(int a, int b){
+        if(a>=b){
+            return a;
+        }
+        return b;
+    }
     /** Returns the sum of all elements in x. */
     public static int arraySum(int[] x) {
         int i = 0;
         int sum = 0;
         while (i < x.length) {
-            sum = sum + add(sum, x[i]);
+            sum = add(sum, x[i]);
             i = i + 1;
         }
         return sum;
