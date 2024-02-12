@@ -1,16 +1,16 @@
-public class ArrayDeque {
+public class ArrayDeque<Item>{
     public int size;
-    public int[] items;
+    public Item[] items;
     public int next;
     public int nextFirst;
     public int nextLast;
     public ArrayDeque(){
         nextFirst=4;
         nextLast=5;
-        items=new int[8];
+        items=(Item[]) new Object[8];
         size=0;
     }
-    public void addFirst(int x){
+    public void addFirst(Item x){
         if(size==items.length){
             resize(items.length*2);
         }
@@ -18,7 +18,7 @@ public class ArrayDeque {
         size++;
         nextFirst=re_index(nextFirst-1);
     }
-    public void addLast(int x ){
+    public void addLast(Item x ){
         if(size==items.length){
             resize(items.length*2);
         }
@@ -26,7 +26,7 @@ public class ArrayDeque {
         size++;
         nextLast=re_index(nextLast+1);
     }
-    public int get(int index){
+    public Item get(int index){
         int get_index=re_index(index+nextFirst+1);
         return items[get_index];
     }
@@ -40,7 +40,7 @@ public class ArrayDeque {
         int current_index=nextFirst+1;
         int last_index=re_index(nextLast-1);
         int start = current_index;
-        while(items[current_index] != 0){
+        while(items[current_index] != null){
             System.out.println(items[current_index]);
             current_index=re_index(current_index+1);
             if(current_index==start){
@@ -48,22 +48,22 @@ public class ArrayDeque {
             }
         }
     }
-    public int removeFirst(){
+    public Item removeFirst(){
         size--;
         nextFirst=re_index(nextFirst+1);
-        int result=items[nextFirst];
-        items[nextFirst]=0;
+        Item result=items[nextFirst];
+        items[nextFirst]=null;
         return result;
     }
-    public int removeLast(){
+    public Item removeLast(){
         size--;
         nextLast=re_index(nextLast-1);
-        int result=items[nextLast];
-        items[nextLast]=0;
+        Item result=items[nextLast];
+        items[nextLast]=null;
         return result;
     }
     public void  resize(int capacity){
-        int[] a = new int[capacity];
+        Item[] a =(Item[]) new Object[capacity];
         System.arraycopy(items,0,a,0,nextLast);
         int i =nextLast+items.length;
         System.arraycopy(items,nextFirst+1,a,nextLast+items.length,items.length-nextLast);
@@ -80,8 +80,10 @@ public class ArrayDeque {
         }
     }
     public static void main(String[] args){
-        ArrayDeque test=new ArrayDeque();
-
+        ArrayDeque<String> test=new ArrayDeque<>();
+        test.addFirst("hello");
+        test.addLast("world");
+        test.printDeque();
     }
 
 }
