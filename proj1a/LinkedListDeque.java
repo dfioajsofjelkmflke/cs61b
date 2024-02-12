@@ -1,5 +1,5 @@
 public class LinkedListDeque<T>{
-    public class TypeNode {
+    private class TypeNode {
         public T item;
         public TypeNode next;
         public TypeNode pre;
@@ -9,16 +9,16 @@ public class LinkedListDeque<T>{
             next=n;
         }
     }
-    public TypeNode sentinel;
-    public int size;
-    public LinkedListDeque(T x){
-        sentinel = new TypeNode(null,null,null);
-        sentinel.next = new TypeNode(x,null,null);
-        sentinel.next.pre=sentinel;
-        sentinel.next.next=sentinel;
-        sentinel.pre=sentinel.next;
-        size = 1;
-    }
+    private TypeNode sentinel;
+    private int size;
+//    public LinkedListDeque(T x){
+//        sentinel = new TypeNode(null,null,null);
+//        sentinel.next = new TypeNode(x,null,null);
+//        sentinel.next.pre=sentinel;
+//        sentinel.next.next=sentinel;
+//        sentinel.pre=sentinel.next;
+//        size = 1;
+//    }
     public LinkedListDeque(){
         sentinel = new TypeNode(null, null,null);
         sentinel.next=sentinel;
@@ -44,7 +44,7 @@ public class LinkedListDeque<T>{
         sentinel.pre=new_node;
         size++;
     }
-    public Boolean isEmpty(){
+    public boolean isEmpty(){
         return size==0;
     }
     public void printDeque(){
@@ -89,7 +89,7 @@ public class LinkedListDeque<T>{
     public T getRecursive(int index){
         return getRecursive_helper(sentinel.next,index);
     }
-    public T getRecursive_helper(TypeNode current_node,int index){
+    private T getRecursive_helper(TypeNode current_node,int index){
         if(index==0){
             return current_node.item;
         }else{
@@ -97,7 +97,7 @@ public class LinkedListDeque<T>{
             return getRecursive_helper(current_node,index-1);
         }
     }
-    public void insert(T i , int position){
+    private void insert(T i , int position){
         TypeNode current_node = sentinel.next;
         int index = 0;
         while(index != position){
@@ -112,12 +112,12 @@ public class LinkedListDeque<T>{
         size++;
     }
 
-    public static void main(String[] args) {
-        LinkedListDeque<Integer> test = new LinkedListDeque<>(0);
-        test.addFirst(1);
-        test.addFirst(2);
-        test.addLast(-1);
-        test.insert(100,1);
-        System.out.println(test.size());
-    }
+//    public static void main(String[] args) {
+//        LinkedListDeque<Integer> test = new LinkedListDeque<>();
+//        test.addFirst(1);
+//        test.addFirst(2);
+//        test.addLast(-1);
+//        test.insert(100,1);
+//        System.out.println(test.size());
+//    }
 }

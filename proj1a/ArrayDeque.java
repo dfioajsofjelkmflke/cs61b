@@ -1,11 +1,11 @@
 import java.net.InterfaceAddress;
 
 public class ArrayDeque<T> {
-    public int size;
-    public T[] items;
-    public int next;
-    public int nextFirst;
-    public int nextLast;
+    private int size;
+    private T[] items;
+    private int next;
+    private int nextFirst;
+    private int nextLast;
     public ArrayDeque() {
         nextFirst = 4;
         nextLast = 5;
@@ -86,7 +86,7 @@ public class ArrayDeque<T> {
 //        items=a;
 //        nextFirst=re_index(i-1);
 //    }
-    public void resize(int capacity){
+    private void resize(int capacity){
         T[] a = (T[]) new Object[capacity];
         int current_index=re_index(nextFirst+1);
         int start_index= current_index;
@@ -104,7 +104,7 @@ public class ArrayDeque<T> {
         nextLast=size;
     }
 
-    public int re_index(int original_index){
+    private int re_index(int original_index){
         if(original_index >= items.length){
             return original_index-items.length;
         }else if(original_index<0){
@@ -113,14 +113,14 @@ public class ArrayDeque<T> {
             return original_index;
         }
     }
-    public static void main(String[] args){
-        ArrayDeque<Integer> test=new ArrayDeque<>();
-        int i = 10;
-        while(i > 0 ){
-            test.addFirst(i);
-            i--;
-        }
-        test.printDeque();
-    }
+//    public static void main(String[] args){
+//        ArrayDeque<Integer> test=new ArrayDeque<>();
+//        int i = 10;
+//        while(i > 0 ){
+//            test.addFirst(i);
+//            i--;
+//        }
+//        test.printDeque();
+//    }
 
 }
