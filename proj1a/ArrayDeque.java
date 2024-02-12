@@ -1,3 +1,5 @@
+import java.net.InterfaceAddress;
+
 public class ArrayDeque<Item> {
     private int size;
     private Item[] items;
@@ -66,8 +68,7 @@ public class ArrayDeque<Item> {
         Item[] a =(Item[]) new Object[capacity];
         System.arraycopy(items,0,a,0,nextLast);
         int i =nextLast+items.length;
-        int start_index=re_index(nextFirst+1);
-        System.arraycopy(items,start_index,a,nextLast+items.length,items.length-nextLast);
+        System.arraycopy(items,nextFirst+1,a,nextLast+items.length,items.length-nextLast);
         items=a;
         nextFirst=re_index(i-1);
     }
@@ -81,7 +82,13 @@ public class ArrayDeque<Item> {
         }
     }
     public static void main(String[] args){
-        ArrayDeque<String> test=new ArrayDeque<>();
+        ArrayDeque<Integer> test=new ArrayDeque<>();
+        int i = 9;
+        while(i > 0 ){
+            test.addFirst(i);
+            i++;
+        }
+        test.printDeque();
     }
 
 }
