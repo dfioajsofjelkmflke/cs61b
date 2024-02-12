@@ -1,5 +1,5 @@
 public class LinkedListDeque<Type>{
-    public class TypeNode {
+    private class TypeNode {
         public Type item;
         public TypeNode next;
         public TypeNode pre;
