@@ -86,7 +86,7 @@ public class ArrayDeque<Item> {
         int i = 9;
         while(i > 0 ){
             test.addFirst(i);
-            i++;
+            i--;
         }
         test.printDeque();
     }
