@@ -1,17 +1,17 @@
-public class LinkedListDeque<Type>{
+public class LinkedListDeque<T>{
     private class TypeNode {
-        public Type item;
+        public T item;
         public TypeNode next;
         public TypeNode pre;
-        public TypeNode(Type i ,TypeNode p,TypeNode n){
+        public TypeNode(T i ,TypeNode p,TypeNode n){
             item=i;
             pre = p;
             next=n;
         }
     }
-    public TypeNode sentinel;
-    public int size;
-    public LinkedListDeque(Type x){
+    private TypeNode sentinel;
+    private int size;
+    public LinkedListDeque(T x){
         sentinel = new TypeNode(null,null,null);
         sentinel.next = new TypeNode(x,null,null);
         sentinel.next.pre=sentinel;
@@ -19,16 +19,16 @@ public class LinkedListDeque<Type>{
         sentinel.pre=sentinel.next;
         size = 1;
     }
-    public LinkedListDeque(){
+    private LinkedListDeque(){
         sentinel = new TypeNode(null, null,null);
         sentinel.next=sentinel;
         sentinel.pre=sentinel;
         size = 0;
     }
-    public int size(){
+    private int size(){
         return size;
     }
-    public void addFirst(Type x){
+    private void addFirst(T x){
         TypeNode new_node = new TypeNode(x,null,null);
         new_node.next=sentinel.next;
         new_node.pre=sentinel;
@@ -36,7 +36,7 @@ public class LinkedListDeque<Type>{
         sentinel.next=new_node;
         size++;
     }
-    public void addLast(Type x ){
+    private void addLast(T x ){
         TypeNode new_node = new TypeNode(x,null,null);
         new_node.pre=sentinel.pre;
         new_node.next=sentinel;
@@ -44,17 +44,17 @@ public class LinkedListDeque<Type>{
         sentinel.pre=new_node;
         size++;
     }
-    public Boolean isEmpty(){
+    private Boolean isEmpty(){
         return size==0;
     }
-    public void printDeque(){
+    private void printDeque(){
         TypeNode current_node = sentinel.next;
         while(current_node.item != null){
             System.out.println(current_node.item);
             current_node=current_node.next;
         }
     }
-    public Type removeFirst(){
+    private T removeFirst(){
         if(sentinel.next.item != null){
             TypeNode remove_node=sentinel.next;
             sentinel.next=sentinel.next.next;
@@ -66,7 +66,7 @@ public class LinkedListDeque<Type>{
         }
     }
 
-    public Type removeLast(){
+    private T removeLast(){
         if (sentinel.pre.item != null){
             TypeNode remove_node =sentinel.pre;
             sentinel.pre=sentinel.pre.pre;
@@ -77,7 +77,7 @@ public class LinkedListDeque<Type>{
             return null;
         }
     }
-    public Type get(int index){
+    private T get(int index){
         int current_index = 0;
         TypeNode current_node = sentinel.next;
         while(current_index != index){
@@ -86,10 +86,10 @@ public class LinkedListDeque<Type>{
         }
         return current_node.item;
     }
-    public Type getRecursive(int index){
+    private T getRecursive(int index){
         return getRecursive_helper(sentinel.next,index);
     }
-    public Type getRecursive_helper(TypeNode current_node,int index){
+    private T getRecursive_helper(TypeNode current_node,int index){
         if(index==0){
             return current_node.item;
         }else{
@@ -97,7 +97,7 @@ public class LinkedListDeque<Type>{
             return getRecursive_helper(current_node,index-1);
         }
     }
-    public void insert(Type i , int position){
+    private void insert(T i , int position){
         TypeNode current_node = sentinel.next;
         int index = 0;
         while(index != position){
