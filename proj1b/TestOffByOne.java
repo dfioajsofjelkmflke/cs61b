@@ -8,13 +8,18 @@ public class TestOffByOne {
     static CharacterComparator offByOne = new OffByOne();
     @Test
     public void testnotequalChars(){
-        boolean actual = offByOne.equalChars('%','B');
+        boolean actual = offByOne.equalChars('%','-');
         assertFalse(actual);
     }
     @Test
     public void testequalChars(){
         boolean actual = offByOne.equalChars('a','b');
         assertTrue(actual);
+    }
+    @Test
+    public void testeualChars(){
+        boolean actual = offByOne.equalChars('a','B');
+        assertFalse(actual);
     }
 
 
