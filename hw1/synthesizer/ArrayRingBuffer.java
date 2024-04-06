@@ -100,12 +100,12 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         }
     }
 
-    public static void main(String [] args){
-        ArrayRingBuffer<Integer> test = new ArrayRingBuffer<>(2);
-        test.enqueue(1);
-        test.enqueue(2);
-        test.dequeue();
-
-    }
+//    public static void main(String [] args){
+//        ArrayRingBuffer<Integer> test = new ArrayRingBuffer<>(2);
+//        test.enqueue(1);
+//        test.enqueue(2);
+//        test.dequeue();
+//
+//    }
 
 }

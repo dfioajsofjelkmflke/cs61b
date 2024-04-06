@@ -53,11 +53,11 @@ public class GuitarString {
         // TODO: Return the correct thing.
         return buffer.peek();
     }
-    public static void main(String[] args){
-        GuitarString test = new GuitarString(4410);
-        test.pluck();
-        test.tic();
-        System.out.println(test.sample());
-    }
+//    public static void main(String[] args){
+//        GuitarString test = new GuitarString(4410);
+//        test.pluck();
+//        test.tic();
+//        System.out.println(test.sample());
+//    }
 
 }
