@@ -16,6 +16,7 @@ public class LeapYear {
 
     /** Must be provided an integer as a command line argument ARGS. */
     public static void main(String[] args) {
+	System.out.println("hello java");
         if (args.length < 1) {
             System.out.println("Please enter command line arguments.");
             System.out.println("e.g. java Year 2000");
