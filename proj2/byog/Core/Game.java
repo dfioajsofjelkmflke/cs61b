@@ -427,40 +427,39 @@ public class Game implements Serializable{
         int sidebound = 10;
         System.out.println("the maze is done, drawing");
         ter.renderFrame(world);
-        inputing = true;
-        try {
-            Robot robot = new Robot();
-
-            robot.keyPress(KeyEvent.VK_SHIFT);
-            robot.keyRelease(KeyEvent.VK_SHIFT);
-
-
-            String text = input;
-            for (char c : text.toCharArray()) {
-                int keyCode = KeyEvent.getExtendedKeyCodeForChar(c);
-                if (KeyEvent.CHAR_UNDEFINED != keyCode) {
-                    if(c==':'){
-                        robot.keyPress(KeyEvent.VK_SHIFT);
-                        robot.keyPress(KeyEvent.VK_SEMICOLON);
-                        robot.keyRelease(KeyEvent.VK_SHIFT);
-                        continue;
-                    }
-                    robot.keyPress(keyCode);
-                    robot.keyRelease(keyCode);
-                }
-                // 加入延迟，让每个字符有一点间隔
-                robot.delay(100);
-            }
-            robot.keyPress(KeyEvent.VK_SHIFT);
-            robot.keyRelease(KeyEvent.VK_SHIFT);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        playWithKeyboard();
-//        long seed = readSeed(input);
-//        Map map= new Map(seed,MazeWidth,MazeHeight,world);
-//        map.addMaze();
-//        ter.renderFrame(world);
+//        try {
+//            Robot robot = new Robot();
+//
+//            robot.keyPress(KeyEvent.VK_SHIFT);
+//            robot.keyRelease(KeyEvent.VK_SHIFT);
+//
+//
+//            String text = input;
+//            for (char c : text.toCharArray()) {
+//                int keyCode = KeyEvent.getExtendedKeyCodeForChar(c);
+//                if (KeyEvent.CHAR_UNDEFINED != keyCode) {
+//                    if(c==':'){
+//                        robot.keyPress(KeyEvent.VK_SHIFT);
+//                        robot.keyPress(KeyEvent.VK_SEMICOLON);
+//                        robot.keyRelease(KeyEvent.VK_SHIFT);
+//                        continue;
+//                    }
+//                    robot.keyPress(keyCode);
+//                    robot.keyRelease(keyCode);
+//                }
+//                // 加入延迟，让每个字符有一点间隔
+//                robot.delay(100);
+//            }
+//            robot.keyPress(KeyEvent.VK_SHIFT);
+//            robot.keyRelease(KeyEvent.VK_SHIFT);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        playWithKeyboard();
+        long seed = readSeed(input);
+        Map map= new Map(seed,MazeWidth,MazeHeight,world);
+        map.addMaze();
+        ter.renderFrame(world);
         return world;
     }
 }
