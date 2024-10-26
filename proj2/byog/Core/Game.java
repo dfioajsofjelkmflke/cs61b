@@ -13,7 +13,7 @@ import java.awt.event.KeyEvent;
 import java.awt.*;
 import java.io.Serializable;
 
-public class Game implements Serializable {
+public class Game implements Serializable{
     boolean inputing = false;
     TERenderer ter = new TERenderer();
     /* Feel free to change the width and height. */
@@ -295,26 +295,26 @@ public class Game implements Serializable {
             }
 
 
-            /** move if key input */
+            /* move if key input */
             gamestate.player.move(key);
             if(gamestate.player.reach(gamestate.exit)){
                 gameover = true;
                 break;
             }
-            /** monster chase player */
+            /* monster chase player */
             if(gamestate.player.getClose(gamestate.monster)){
 //                gamestate.monster.chase(gamestate.player);
 //                if(gamestate.player.reach(gamestate.monster)){
 //                    break;
 //                }
             }
-            /** get the token */
+            /* get the token */
             if(gamestate.player.reach(gamestate.token) && !tokenGot){
                 tokenGot = true;
                 appendDraw("You got the token !",MIDWIDTH,HEIGHT-1);
             }
         }
-        /** game over */
+        /* game over */
         if(gameover){
             drawFrame("Congratulation ! You win. The Game is over",MIDWIDTH,MIDHEIGHT);
         }else{
@@ -322,7 +322,7 @@ public class Game implements Serializable {
         }
     }
     private void play(String input){
-        /** initialize the world */
+        /* initialize the world */
         ter.initialize(WIDTH, HEIGHT);
 //        int MazeWidth = WIDTH-20;
 //        int MazeHeight = HEIGHT-10;
@@ -338,7 +338,7 @@ public class Game implements Serializable {
         Map map= new Map(seed,WIDTH,HEIGHT,world);
         map.addMaze();
 
-        /** add object to the world */
+        /* add object to the world */
         GameObject entrance = new GameObject("entrance", map.entrance.x , map.entrance.y, world);
         GameObject exit = new GameObject("exit", map.exit.x, map.exit.y,world);
         GameObject player = new GameObject("player",map.entrance.x ,map.entrance.y,world);
@@ -348,7 +348,7 @@ public class Game implements Serializable {
         GameObject token = new GameObject("token",tokenPos[0],tokenPos[1],world);
         GameState gamestate = new GameState(world,player,monster,token,entrance,exit);
 
-        /** main part of the game */
+        /* main part of the game */
         mainGameLoop(gamestate);
     }
     private void loadGame(){
@@ -386,7 +386,7 @@ public class Game implements Serializable {
         }
     }
 
-    /**
+    /*
      * Method used for autograding and testing the game code. The input string will be a series
      * of characters (for example, "n123sswwdasdassadwas", "n123sss:q", "lwww". The game should
      * behave exactly as if the user typed these characters into the game after playing
@@ -399,13 +399,13 @@ public class Game implements Serializable {
      * @return the 2D TETile[][] representing the state of the world
      */
     private static long readSeed(String input){
-        /** read the input Command String and return the seed */
+        /* read the input Command String and return the seed */
         String seedLong = input.replaceAll("[^0-9]", "");
         long seed = Long.parseLong(seedLong);
         return seed;
     }
     private String readCommand(String input){
-        /** read the input Command String and return the command */
+        /* read the input Command String and return the command */
         String command = input.replaceAll("[0-9]", "");
         return command;
     }
