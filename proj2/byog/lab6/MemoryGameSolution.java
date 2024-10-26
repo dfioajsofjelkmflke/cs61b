@@ -71,7 +71,7 @@ public class MemoryGameSolution {
         }
     }
 
-    public String generateRandomString(int n) {
+    public String generateRandomString(int n){
         StringBuilder sb = new StringBuilder();
 
         while (sb.length() < n) {
@@ -80,7 +80,6 @@ public class MemoryGameSolution {
 
         return sb.toString();
     }
-
     public void flashSequence(String letters) {
         for (int i = 0; i < letters.length(); i++) {
             drawFrame(letters.substring(i, i + 1));
@@ -89,7 +88,6 @@ public class MemoryGameSolution {
             StdDraw.pause(750);
         }
     }
-
     public String solicitNCharsInput(int n) {
         String input = "";
         drawFrame(input);
@@ -105,11 +103,9 @@ public class MemoryGameSolution {
         StdDraw.pause(500);
         return input;
     }
-
     public void drawFrame(String s) {
         int midWidth = width / 2;
         int midHeight = height / 2;
-
         StdDraw.clear();
         StdDraw.clear(Color.black);
 
@@ -122,7 +118,6 @@ public class MemoryGameSolution {
             StdDraw.textRight(width - 1, height - 1, ENCOURAGEMENT[round % ENCOURAGEMENT.length]);
             StdDraw.line(0, height - 2, width, height - 2);
         }
-
         // Draw the actual text
         Font bigFont = new Font("Monaco", Font.BOLD, 30);
         StdDraw.setFont(bigFont);
