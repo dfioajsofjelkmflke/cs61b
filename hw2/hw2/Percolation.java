@@ -10,7 +10,9 @@ public class Percolation {
      * count : return the number of union sets;
      * */
     private final boolean[][] grid;
+    private boolean[][] clicked;
     private final WeightedQuickUnionUF uf;
+    private final WeightedQuickUnionUF ufBottom;
     private int openSites = 0;
     private final int N;
     private final int top;
@@ -22,21 +24,30 @@ public class Percolation {
         }
         this.N = N;
         int sitesNumber = N*N;
-        top = sitesNumber +1;
-        bottom = sitesNumber +2;
-        uf = new WeightedQuickUnionUF(sitesNumber);
+        top = sitesNumber ;
+        bottom = sitesNumber +1;
+        uf = new WeightedQuickUnionUF(sitesNumber+2);
+        ufBottom = new WeightedQuickUnionUF(sitesNumber+2);
         grid = new boolean[N][N];
+        clicked = new boolean[N][N];
         for(int i=0;i<N;i+=1){
             uf.union(top, i);
-            uf.union(bottom, sitesNumber - i);
+            ufBottom.union(top,i);
         }
+    }
+    public boolean clicked(int row, int col){
+        return clicked[row][col];
     }
     public void open(int row, int col){
         // open the site (row, col) if it is not open already
         if(row<0 || row>=N || col<0 || col>=N){
             throw new IllegalArgumentException();
         }
+        if(isOpen(row, col)){
+            return;
+        }
         grid[row][col] = true;
+        clicked[row][col] = true;
         openSites += 1;
         int n = row*N + col;
         // if there is A open site around , connect it
@@ -46,15 +57,26 @@ public class Percolation {
         int downRow = (row+1<N) ? row+1 : row;
         if(isOpen(row, leftCol)){
             uf.union(n, row*N + leftCol);
+            ufBottom.union(n, row*N + leftCol);
         }
         if(isOpen(row, rightCol)){
             uf.union(n, row*N + rightCol);
+            ufBottom.union(n, row*N + rightCol);
         }
         if(isOpen(upRow, col)){
-            uf.union(n, (row-1)*N + col);
+            uf.union(n, upRow*N+ col);
+            ufBottom.union(n, upRow*N + col);
         }
         if(isOpen(downRow, col)){
-            uf.union(n, (row+1)*N + col);
+            uf.union(n, downRow*N+col);
+            ufBottom.union(n, downRow*N+col);
+        }
+
+
+        if(row == N-1){
+            System.out.println("bottom row");
+            ufBottom.union(n, bottom);
+            System.out.println(ufBottom.connected(n, bottom));
         }
     }
     public boolean isOpen(int row, int col){
@@ -70,9 +92,7 @@ public class Percolation {
         if(row<0 || row>= N || col<0 || col>= N ){
             throw new IllegalArgumentException();
         }
-        if(row == N-1){
-        }
-        return uf.connected(top, row*N + col);
+        return uf.connected(top, row*N + col) && clicked(row, col); // only open and clicked site can be full
     }
     public int numberOfOpenSites(){
         //number of open sites
@@ -80,7 +100,7 @@ public class Percolation {
     }
     public boolean percolates(){
         // does the system percolate?
-        return uf.connected(top, bottom);
+        return ufBottom.connected(top, bottom);
     }
     public static void main(String[] args){
         // use for unit testing (not required)
